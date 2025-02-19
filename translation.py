@@ -19,6 +19,9 @@ def translate():
         return jsonify({'error': f'Translation failed: {str(e)}'}), 500
     except Exception as e:
         return jsonify({'error': f'Unexpected error: {str(e)}'}), 500
-
+@app.route("/health", methods=["GET"])
+def health_check():
+    """Check if the server is running."""
+    return jsonify({"status": "ok"}), 200
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
